@@ -1,0 +1,84 @@
+@import "tailwindcss";
+
+@theme {
+  --color-paper: #f5f6fa;
+  --color-ink: #0f1629;
+  --color-ink-soft: #4a5370;
+  --color-line: #dfe2ec;
+  --color-signal: #2b50ff;
+  --color-signal-dark: #1c3ad6;
+  --color-mint: #17c3a0;
+  --color-sun: #ffbe2e;
+  --color-coral: #ff6b57;
+  --font-display: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+  section[id] {
+    scroll-margin-top: 5rem;
+  }
+  :focus-visible {
+    outline: 3px solid var(--color-signal);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@keyframes cell-in {
+  from {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(0.85);
+  }
+  60% {
+    transform: scale(1.08);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.cell-in {
+  animation: cell-in 0.45s cubic-bezier(0.2, 0.9, 0.3, 1.2) both;
+}
+.pop {
+  animation: pop 0.25s ease-out;
+}
